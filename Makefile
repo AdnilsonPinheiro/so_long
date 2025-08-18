@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/14 17:53:12 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/18 18:50:21 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_FLAGS := -L$(MLX_PATH) -lmlx -lXext -lX11
 BUILD_DIR := build
 
 #Source Files
-SRC_FILES := main.c
+SRC_FILES := parse.c libft/get_next_line.c
 #Object Files
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
@@ -76,7 +76,8 @@ norm:
 valgrind: $(NAME)
 	@echo "$(YELLOW)Valgrind Report$(RESET)"
 	@valgrind --leak-check=full --show-leak-kinds=all \
-	./$(NAME)
+	--track-origins=yes \
+	./$(NAME) map.ber
 
 gdb: $(NAME)
 	@gdb --tui --args ./$(NAME) 
