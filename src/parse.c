@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/19 18:29:05 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:26:43 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,11 +145,9 @@ static void	ft_nbcheck(t_map *map)
 		ft_cleanmap("Must have one, and only one, player\n", map, NB_ER);
 }
 
-static void	ft_isrect(t_map *map)/*verificar se as paredes estao certas*/
+static void	ft_checkwall(t_map *map, size_t len)
 {
-	size_t	len;
-	int		i;
-	int		j;
+	int	i;
 
 	i = -1;
 	while (map->matrix[0][++i])
@@ -157,23 +155,34 @@ static void	ft_isrect(t_map *map)/*verificar se as paredes estao certas*/
 		if (map->matrix[0][i] != '1')
 			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
 	}
-	i = -1;
-	while (map->matrix[++i])
-	j = 0;
-	while (map->matrix[i][++j])
-	{
-		if (map->matrix[i][j] != '1')
-			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
-	}
-	len = ft_strlen(map->matrix[i]);
-	i = -1;
+	i = 0;
 	while (map->matrix[++i])
 	{
 		if (map->matrix[i][0] != '1' || map->matrix[i][len] != '1')
 			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
+	}
+	i = -1;
+	while (map->matrix[map->size - 1][++i])
+	{
+		if (map->matrix[map->size - 1][i] != '1')
+			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
+	}
+}
+
+static void	ft_isrect(t_map *map)
+{
+	size_t	len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(map->matrix[i]);
+	while (map->matrix[i])
+	{
 		if (ft_strlen(map->matrix[i]) != len)
 			ft_cleanmap("Map not rectangular\n", map, RECT_ER);
+		i++;
 	}
+	ft_checkwall(map, len - 1);
 }
 
 static void	ft_findplayer(t_map *map)
