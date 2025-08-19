@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:15:28 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/18 18:57:56 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:39:05 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 /*In order for the here_doc in pipex bonus to work,
 STASH was converted in a file static, instead of the previous
 function static*/
-//static char	*g_stash = NULL;
+static char	*g_stash = NULL;
 
 /*clears stash after done with it
 created for pipex bonus, in order to 
 prevent memory leaks after implementing here_doc*/
-// void	get_next_line_clear(void)
-// {
-// 	if (g_stash)
-// 	{
-// 		free (g_stash);
-// 		g_stash = NULL;
-// 	}
-// }
+void	get_next_line_clear(void)
+{
+	if (g_stash)
+	{
+		free (g_stash);
+		g_stash = NULL;
+	}
+}
 
 /*reads file into the buffer
 updates the stash
@@ -111,7 +111,6 @@ char	*ft_update(char *stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*g_stash = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

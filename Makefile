@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/19 19:51:01 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/19 20:39:29 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_FLAGS := -L$(MLX_PATH) -lmlx -lXext -lX11
 BUILD_DIR := build
 
 #Source Files
-SRC_FILES := main.c ft_floodfill.c ft_cleanmap.c mapcheck.c
+SRC_FILES := main.c ft_floodfill.c ft_cleanmap.c mapcheck.c libft/get_next_line.c
 
 #Object Files
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
@@ -78,7 +78,7 @@ valgrind: $(NAME)
 	@echo "$(YELLOW)Valgrind Report$(RESET)"
 	@valgrind --leak-check=full --show-leak-kinds=all \
 	--track-origins=yes \
-	./$(NAME) map.ber
+	./$(NAME) map_umnegocinho.ber
 
 gdb: $(NAME)
 	@gdb --tui --args ./$(NAME) map.ber

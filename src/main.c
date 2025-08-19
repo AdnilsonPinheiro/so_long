@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/19 20:06:43 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:46:48 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ static void	ft_size(char *argv, t_map *map)
 	map->fd = open(argv, O_RDONLY);
 	if (map->fd == -1)
 		ft_cleanmap("Failed to open argv[1]\n", map, OPEN_ER);
-	while ((line = get_next_line(map->fd)))
+	line = get_next_line(map->fd);
+	while (line)
 	{
+		line = get_next_line(map->fd);
 		map->size++;
-		if (!line)
-			break ;
 		free(line);
 	}
+	get_next_line_clear();
 	close(map->fd);
-	free(line);
 }
 
 static void	ft_makemap(char *argv, t_map *map)
@@ -84,6 +84,7 @@ static void	ft_makemap(char *argv, t_map *map)
 		free(line);
 		i++;
 	}
+	get_next_line_clear();
 	map->matrix[i] = NULL;
 	close(map->fd);
 }
