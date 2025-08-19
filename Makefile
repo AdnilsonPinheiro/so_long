@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/18 18:50:21 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/19 15:29:59 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ valgrind: $(NAME)
 	./$(NAME) map.ber
 
 gdb: $(NAME)
-	@gdb --tui --args ./$(NAME) 
+	@gdb --tui --args ./$(NAME) map.ber
 
 #Cleanup
 clean:

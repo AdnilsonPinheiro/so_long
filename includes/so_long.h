@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/18 19:22:49 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:22:10 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ enum e_error
 	MATRIX_ER,
 	CHAR_ER,
 	NB_ER,
-	RECT_ER
+	RECT_ER,
+	FLOOD_ER
 };
 
 #endif

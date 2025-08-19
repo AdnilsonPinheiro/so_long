@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/18 19:53:07 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 18:29:05 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static void	ft_makemap(char *argv, t_map *map);
 static void	ft_cleanmap(char *str, t_map *map, int mod);
 static void	ft_nbcheck(t_map *map);
 static void	ft_isrect(t_map *map);
-static void	ft_issolvable(t_map *map);
+static void	ft_findplayer(t_map *map);
 static void	ft_floodfill(t_map *map, int y, int x);
+static void	ft_freematrix(char **matrix, t_map *map);
+static char	**ft_matrixdup(t_map *map);
 
 int	main(int argc, char **argv)
 {
@@ -49,7 +51,7 @@ static void	ft_parse(char *argv, t_map *map)
 	ft_makemap(argv, map);
 	ft_validchar(map);
 	ft_isrect(map);
-	ft_issolvable(map);
+	ft_findplayer(map);
 }
 
 static void	ft_isber(char *argv, t_map *map)
@@ -147,27 +149,43 @@ static void	ft_isrect(t_map *map)/*verificar se as paredes estao certas*/
 {
 	size_t	len;
 	int		i;
+	int		j;
 
-	i = 0;
-	len = ft_strlen(map->matrix[i]);
-	while (map->matrix[i])
+	i = -1;
+	while (map->matrix[0][++i])
 	{
+		if (map->matrix[0][i] != '1')
+			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
+	}
+	i = -1;
+	while (map->matrix[++i])
+	j = 0;
+	while (map->matrix[i][++j])
+	{
+		if (map->matrix[i][j] != '1')
+			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
+	}
+	len = ft_strlen(map->matrix[i]);
+	i = -1;
+	while (map->matrix[++i])
+	{
+		if (map->matrix[i][0] != '1' || map->matrix[i][len] != '1')
+			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
 		if (ft_strlen(map->matrix[i]) != len)
 			ft_cleanmap("Map not rectangular\n", map, RECT_ER);
-		i++;
 	}
 }
 
-static void	ft_issolvable(t_map *map)
+static void	ft_findplayer(t_map *map)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map->matrix[i++])
+	i = -1;
+	while (map->matrix[++i])
 	{
-		j = 0;
-		while (map->matrix[i][j++])
+		j = -1;
+		while (map->matrix[i][++j])
 		{
 			if (map->matrix[i][j] == 'P')
 			{
@@ -178,20 +196,93 @@ static void	ft_issolvable(t_map *map)
 	}
 }
 
+static void	ft_freematrix(char **matrix, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+	if (map)
+		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
+}
+
+static char	**ft_matrixdup(t_map *map)
+{
+	char	**matrix;
+	int		i;
+	int		j;
+
+	matrix = malloc(sizeof(char *) * (map->size + 1));
+	if (!matrix)
+		ft_cleanmap("Failed to floodfill\n", map, FLOOD_ER);
+	i = -1;
+	while (map->matrix[++i])
+	{
+		matrix[i] = malloc(sizeof(char *) * ft_strlen(map->matrix[i]));
+		if (!matrix[i])
+			ft_freematrix(matrix, map);
+		j = -1;
+		while(map->matrix[i][++j])
+			matrix[i][j] = map->matrix[i][j];
+		matrix[i][j] = '\0';
+	}
+	matrix[i] = NULL;
+	return (matrix);
+}
+
+static void	ft_checkfill(char **matrix, t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (matrix[++i])
+	{
+		j = -1;
+		while(matrix[i][++j])
+		{
+			if (matrix[i][j] != 'F' && matrix[i][j] != '1')
+			{
+				ft_freematrix(matrix, NULL);
+				ft_cleanmap("Map not solvable\n", map, FLOOD_ER);
+			}
+		}
+	}
+}
+
+static void	ft_fill(char **matrix, int y, int x)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	if (matrix[y][x] == 'F' || matrix[y][x] == '1' || matrix[y][x] == '\0')
+		return ;
+	else if (y < 0 || x < 0 || x > (int)ft_strlen(matrix[y]) || y >= i)
+		return ;
+	matrix[y][x] = 'F';
+	ft_fill(matrix, y+1, x);
+	ft_fill(matrix, y, x+1);
+	ft_fill(matrix, y-1, x);
+	ft_fill(matrix, y, x-1);
+}
+
 static void	ft_floodfill(t_map *map, int y, int x)
 {
 	char	**matrix;
 	char	player;
 
-	ft_memcpy(matrix, map->matrix, (size_t)map->size);
+	matrix = ft_matrixdup(map);
 	player = matrix[y][x];
-	if (player != "1")
-	{
-		matrix[++y][x] = player;
-		matrix[y][++x] = player;
-		matrix[--y][x] = player;
-		matrix[y][--x] = player;
-	}
+	ft_fill(matrix, y, x);
+	ft_checkfill(matrix, map);
+	ft_freematrix(matrix, NULL);
 }
 
 static void	ft_cleanmap(char *str, t_map *map, int mod)
