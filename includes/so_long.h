@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/19 15:22:10 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:57:03 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,16 @@ enum e_error
 	RECT_ER,
 	FLOOD_ER
 };
+
+/*Error Functions*/
+void	ft_cleanmap(char *str, t_map *map, int mod);
+
+/*Parsing Functions*/
+void	ft_floodfill(t_map *map, int y, int x);
+void	ft_isber(char *argv, t_map *map);
+void	ft_validchar(t_map *map);
+void	ft_isrect(t_map *map);
+void	ft_checkwall(t_map *map, size_t len);
+void	ft_nbcheck(t_map *map);
 
 #endif

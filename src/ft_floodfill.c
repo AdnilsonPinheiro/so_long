@@ -1,0 +1,107 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_floodfill.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
+/*   Updated: 2025/08/19 20:00:17 by adpinhei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+static char	**ft_matrixdup(t_map *map);
+static void	ft_fill(char **matrix, int y, int x);
+static void	ft_checkfill(char **matrix, t_map *map);
+static void	ft_freematrix(char **matrix, t_map *map);
+
+void	ft_floodfill(t_map *map, int y, int x)
+{
+	char	**matrix;
+	char	player;
+
+	matrix = ft_matrixdup(map);
+	player = matrix[y][x];
+	ft_fill(matrix, y, x);
+	ft_checkfill(matrix, map);
+	ft_freematrix(matrix, NULL);
+}
+
+static char	**ft_matrixdup(t_map *map)
+{
+	char	**matrix;
+	int		i;
+	int		j;
+
+	matrix = malloc(sizeof(char *) * (map->size + 1));
+	if (!matrix)
+		ft_cleanmap("Failed to floodfill\n", map, FLOOD_ER);
+	i = -1;
+	while (map->matrix[++i])
+	{
+		matrix[i] = malloc(sizeof(char *) * ft_strlen(map->matrix[i]));
+		if (!matrix[i])
+			ft_freematrix(matrix, map);
+		j = -1;
+		while (map->matrix[i][++j])
+			matrix[i][j] = map->matrix[i][j];
+		matrix[i][j] = '\0';
+	}
+	matrix[i] = NULL;
+	return (matrix);
+}
+
+static void	ft_fill(char **matrix, int y, int x)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	if (matrix[y][x] == 'F' || matrix[y][x] == '1' || matrix[y][x] == '\0')
+		return ;
+	else if (y < 0 || x < 0 || x > (int)ft_strlen(matrix[y]) || y >= i)
+		return ;
+	matrix[y][x] = 'F';
+	ft_fill(matrix, y + 1, x);
+	ft_fill(matrix, y, x + 1);
+	ft_fill(matrix, y - 1, x);
+	ft_fill(matrix, y, x - 1);
+}
+
+static void	ft_checkfill(char **matrix, t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (matrix[++i])
+	{
+		j = -1;
+		while (matrix[i][++j])
+		{
+			if (matrix[i][j] != 'F' && matrix[i][j] != '1')
+			{
+				ft_freematrix(matrix, NULL);
+				ft_cleanmap("Map not solvable\n", map, FLOOD_ER);
+			}
+		}
+	}
+}
+
+static void	ft_freematrix(char **matrix, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+	if (map)
+		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
+}

@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/19 15:29:59 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/19 19:51:01 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC := cc
 
 FLAGS := -Wall -Wextra -Werror -g -Iincludes -Imlx_linux
 
-vpath %.c src
+vpath %.c src error
 
 LIBFT_PATH := ./libft
 LIBFT := $(LIBFT_PATH)/libft.a
@@ -30,7 +30,8 @@ MLX_FLAGS := -L$(MLX_PATH) -lmlx -lXext -lX11
 BUILD_DIR := build
 
 #Source Files
-SRC_FILES := parse.c libft/get_next_line.c
+SRC_FILES := main.c ft_floodfill.c ft_cleanmap.c mapcheck.c
+
 #Object Files
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
@@ -90,10 +91,10 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f $(BONUS_NAME)
+#	@rm -f $(BONUS_NAME)
 	@echo "$(BLUE)Erased norminette logfile$(RESET) norma"
 	@make --no-print-directory -C $(LIBFT_PATH) fclean
-	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME) $(BONUS_NAME)"
+	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME)"
 
 re: fclean all
 
