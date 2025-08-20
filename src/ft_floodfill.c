@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/19 20:00:17 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:20:26 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	ft_checkfill(char **matrix, t_map *map)
 		j = -1;
 		while (matrix[i][++j])
 		{
-			if (matrix[i][j] != 'F' && matrix[i][j] != '1')
+			if (matrix[i][j] == 'E' || matrix[i][j] == 'C')
 			{
 				ft_freematrix(matrix, NULL);
 				ft_cleanmap("Map not solvable\n", map, FLOOD_ER);
