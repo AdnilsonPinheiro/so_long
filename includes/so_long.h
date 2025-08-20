@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/19 19:57:03 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:15:00 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,24 @@ typedef struct s_map
 	int		nb_p;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img;
+	int		bpp;
+	char	*addr;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	t_img	*img;
+	int		movecount;
+}	t_game;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -53,7 +71,7 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
-enum e_error
+enum e_error_parse
 {
 	ALLOC,
 	NO_ARG,
@@ -66,6 +84,11 @@ enum e_error
 	FLOOD_ER
 };
 
+enum e_error_game
+{
+	GAME_ALLOC,
+};
+
 /*Error Functions*/
 void	ft_cleanmap(char *str, t_map *map, int mod);
 
@@ -76,5 +99,8 @@ void	ft_validchar(t_map *map);
 void	ft_isrect(t_map *map);
 void	ft_checkwall(t_map *map, size_t len);
 void	ft_nbcheck(t_map *map);
+
+/*Game Functions*/
+void	ft_game(t_map *map);
 
 #endif
