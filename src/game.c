@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/20 19:34:45 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/21 13:28:02 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 static void	ft_cleangame(char *str, t_game *game, int mod);
 static void	ft_my_pixel_put(t_img *img, int x, int y, int color);
 static int	handle_keypress(int keysym, t_game *game);
+static void	ft_putrect(t_img *img, int x, int y);
 
 void	ft_game(t_map *map)
 {
 	t_game	*game;
-	int	x = 200;
-	int	y = 200;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -40,21 +39,25 @@ void	ft_game(t_map *map)
 		ft_cleangame("Failed to create image\n", game, GAME_ALLOC);
 	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bpp, \
 		&game->img->line_len, &game->img->endian);
-	while (y <= 500)
-	{
-		x = 200;
-		while (x <= 500)
-		{
-			ft_my_pixel_put(game->img, x, y, 0xFF0000);
-			x++;
-		}
-		y++;
-	}
-	printf("MLX: %p\n", game->mlx);
+	ft_putrect(game->img, 200, 200);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_loop(game->mlx);
 	ft_cleangame(NULL, game, 0);
+}
+
+static void	ft_putrect(t_img *img, int x, int y)
+{
+	while (y <= 500)
+	{
+		x = 0;
+		while (x <= 500)
+		{
+			ft_my_pixel_put(img, x, y, 0xFF0000);
+			x++;
+		}
+		y++;
+	}
 }
 
 static void	ft_my_pixel_put(t_img *img, int x, int y, int color)
@@ -67,7 +70,6 @@ static void	ft_my_pixel_put(t_img *img, int x, int y, int color)
 
 static int	handle_keypress(int keysym, t_game *game)
 {
-	printf("MLX: %p\n", game->mlx);
 	if (keysym == XK_Escape)
 		ft_cleangame(NULL, game, 0);
 	return (0);
@@ -82,8 +84,6 @@ static void	ft_cleangame(char *str, t_game *game, int mod)
 	}
 	if (game)
 	{
-		printf("Entrou\n");
-		printf("MLX: %p\n", game->mlx);
 		if (game->map)
 			ft_cleanmap(NULL, game->map, 0);
 		if (game->img)
@@ -96,7 +96,6 @@ static void	ft_cleangame(char *str, t_game *game, int mod)
 			mlx_destroy_window(game->mlx, game->win);
 		if (game->mlx)
 		{
-			printf("limpando\n");
 			mlx_destroy_display(game->mlx);
 			free(game->mlx);
 		}
@@ -104,4 +103,6 @@ static void	ft_cleangame(char *str, t_game *game, int mod)
 	}
 	if (mod != 0)
 		exit(EXIT_FAILURE);
+	else
+		ft_putstr_fd("Game ended gracefully =)\n", 1);
 }

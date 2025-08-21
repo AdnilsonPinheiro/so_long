@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/20 19:33:40 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/21 13:15:48 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ vpath %.c src error
 LIBFT_PATH := ./libft
 LIBFT := $(LIBFT_PATH)/libft.a
 
-MLX_PATH := ./mlx_linux
+MLX_PATH := ./minilibx-linux
 MLX_LIB := $(MLX_PATH)/libmlx_Linux.a
 MLX_FLAGS := -L$(MLX_PATH) -lmlx -lXext -lX11
 
@@ -33,6 +33,7 @@ BUILD_DIR := build
 SRC_FILES := main.c ft_floodfill.c ft_cleanmap.c mapcheck.c \
 			libft/get_next_line.c game.c
 
+#SRC_FILES := main_graph.c
 #Object Files
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
@@ -43,13 +44,17 @@ BONUS_OBJ := $(BONUS_SRCS:%.c=$(BUILD_DIR)/%.o)
 
 .PHONY: all clean fclean re valgrind norm gdb
 
-all: $(BUILD_DIR) $(LIBFT) $(NAME)
+all: $(BUILD_DIR) $(LIBFT) $(MLX_LIB) $(NAME)
 
 bonus: $(BUILD_DIR) $(LIBFT) $(BONUS_NAME)
 
 #Compile library LIBFT
 $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_PATH)
+
+#Compile library libmlx_Linux.a
+$(MLX_LIB):
+	@make --no-print-directory -C $(MLX_PATH)
 
 #Create BUILD directory if it doesn't exist
 $(BUILD_DIR):
