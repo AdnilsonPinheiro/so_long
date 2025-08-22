@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/20 16:43:27 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:51:28 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	}
 	ft_parse(argv[1], map);
 	ft_game(map);
-	ft_cleanmap(NULL, map, 0);
+	ft_putstr_fd("Program closed gracefully =)\n", 1);
 }
 
 static void	ft_parse(char *argv, t_map *map)
@@ -106,6 +106,8 @@ static void	ft_findplayer(t_map *map)
 		{
 			if (map->matrix[i][j] == 'P')
 			{
+				map->pos_y = i;
+				map->pos_x = j;
 				ft_floodfill(map, i, j);
 				return ;
 			}

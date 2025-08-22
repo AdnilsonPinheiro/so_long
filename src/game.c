@@ -6,103 +6,62 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/21 13:28:02 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/22 19:57:18 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_cleangame(char *str, t_game *game, int mod);
-static void	ft_my_pixel_put(t_img *img, int x, int y, int color);
-static int	handle_keypress(int keysym, t_game *game);
-static void	ft_putrect(t_img *img, int x, int y);
+static t_game	*ft_gameinit(t_map *map);
+static t_img	*ft_imginit(t_game *game, t_img *img);
 
 void	ft_game(t_map *map)
 {
 	t_game	*game;
 
+	game = ft_gameinit(map);
+}
+
+static t_game	*ft_gameinit(t_map *map)
+{
+	t_game *game;
+
 	game = malloc(sizeof(t_game));
 	if (!game)
-		ft_cleangame("Failed to allocate for t_game\n", NULL, GAME_ALLOC);
+		ft_cleanmap("Failed to allocate t_game\n", map, GAME_ALLOC);
 	game->map = map;
+	game->collect = ft_imginit(game, &game->collect);
+	if (!game->collect)
+		ft_cleangame("Failed to allocate collectable\n", game, GAME_ALLOC);
+	game->exit = ft_imginit(game, &game->exit);
+	if (!game->exit)
+		ft_cleangame("Failed to allocate exit\n", game, GAME_ALLOC);
+	game->floor = ft_imginit(game, &game->floor);
+	if (!game->floor)
+		ft_cleangame("Failed to allocate floor\n", game, GAME_ALLOC);
+	game->player = ft_imginit(game, &game->player);
+	if (!game->player)
+		ft_cleangame("Failed to allocate player\n", game, GAME_ALLOC);
+	game->wall = ft_imginit(game, &game->wall);
+	if (!game->wall)
+		ft_cleangame("Failed to allocate wall\n", game, GAME_ALLOC);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		ft_cleangame("Failed to initialize\n", game, GAME_ALLOC);
+		ft_cleangame("Failed to initialize display\n", game, GAME_ALLOC);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "so_long");
 	if (!game->win)
 		ft_cleangame("Failed to create window\n", game, GAME_ALLOC);
-	game->img = malloc(sizeof(t_img));
-	if (!game->img)
-		ft_cleangame("Failed to allocate for t_img\n", game, GAME_ALLOC);
-	game->img->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	if (!game->img->img)
-		ft_cleangame("Failed to create image\n", game, GAME_ALLOC);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bpp, \
-		&game->img->line_len, &game->img->endian);
-	ft_putrect(game->img, 200, 200);
-	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
-	mlx_loop(game->mlx);
-	ft_cleangame(NULL, game, 0);
+	return (game);
 }
 
-static void	ft_putrect(t_img *img, int x, int y)
+static t_img	*ft_imginit(t_game *game, t_img *img)/*add image path*/
 {
-	while (y <= 500)
-	{
-		x = 0;
-		while (x <= 500)
-		{
-			ft_my_pixel_put(img, x, y, 0xFF0000);
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	ft_my_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + ((y * img->line_len) + (x * img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-static int	handle_keypress(int keysym, t_game *game)
-{
-	if (keysym == XK_Escape)
-		ft_cleangame(NULL, game, 0);
-	return (0);
-}
-
-static void	ft_cleangame(char *str, t_game *game, int mod)
-{
-	if (str)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd(str, 2);
-	}
-	if (game)
-	{
-		if (game->map)
-			ft_cleanmap(NULL, game->map, 0);
-		if (game->img)
-		{
-			if (game->img->img)
-				mlx_destroy_image(game->mlx, game->img->img);
-			free(game->img);
-		}
-		if (game->win)
-			mlx_destroy_window(game->mlx, game->win);
-		if (game->mlx)
-		{
-			mlx_destroy_display(game->mlx);
-			free(game->mlx);
-		}
-		free(game);
-	}
-	if (mod != 0)
-		exit(EXIT_FAILURE);
-	else
-		ft_putstr_fd("Game ended gracefully =)\n", 1);
+	if (!game)
+		return (NULL);
+	img = malloc(sizeof(t_img));
+	if (!img)
+		return (NULL);
+	img->img = mlx_new_image(game->mlx, TITLE_WD, TITLE_HG);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
+	return (img);
 }
