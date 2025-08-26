@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/22 18:54:53 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/08/26 20:20:30 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ BUILD_DIR := build
 SRC_FILES := main.c ft_floodfill.c clean_fts.c mapcheck.c \
 			libft/get_next_line.c game.c
 
-#SRC_FILES := main_graph.c
 #Object Files
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
@@ -69,7 +68,7 @@ $(BUILD_DIR)/%.o: %.c
 
 #Building executable
 $(NAME): $(OBJ_FILES) $(LIBFT)
-	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -lz -o $@
+	@$(CC) $(FLAGS) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $@
 	@echo "$(YELLOW)Compiled$(RESET) $(NAME)"
 
 #Building bonus executable
@@ -85,15 +84,11 @@ valgrind: $(NAME)
 	@valgrind --leak-check=full \
 	--show-leak-kinds=all \
 	--track-origins=yes \
-	./$(NAME) map.ber
+	./$(NAME) ./maps/map.ber
 
-# valgrind: $(NAME)
-# 	@echo "$(YELLOW)Valgrind Report$(RESET)"
-# 	@valgrind --leak-check=full \
-# 	./$(NAME) map_deveriadar.ber
 
 gdb: $(NAME)
-	@gdb --tui --args ./$(NAME) map.ber
+	@gdb --tui --args ./$(NAME) ./maps/map.ber
 
 #Cleanup
 clean:

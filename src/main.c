@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/22 18:51:28 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:11:40 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	ft_makemap(char *argv, t_map *map)
 	}
 	get_next_line_clear();
 	map->matrix[i] = NULL;
+	map->len = ft_strlen(map->matrix[0]);
 	close(map->fd);
 }
 
@@ -106,8 +107,8 @@ static void	ft_findplayer(t_map *map)
 		{
 			if (map->matrix[i][j] == 'P')
 			{
-				map->pos_y = i;
-				map->pos_x = j;
+				map->player_y = i;
+				map->player_x = j;
 				ft_floodfill(map, i, j);
 				return ;
 			}
