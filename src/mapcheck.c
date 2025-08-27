@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:50:52 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/22 18:47:32 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:40:00 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_isber(char *argv, t_map *map)
 	int	pos;
 
 	map->matrix = NULL;
-	map->fd = 0;
+	map->fd = -1;
 	if (!argv)
 		ft_cleanmap("No argument\n", map, NO_ARG);
 	pos = ft_strlen(argv) - 4;

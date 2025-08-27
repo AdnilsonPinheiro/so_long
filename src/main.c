@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/26 20:11:40 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:39:34 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	ft_size(char *argv, t_map *map)
 	}
 	get_next_line_clear();
 	close(map->fd);
+	map->fd = -1;
 }
 
 static void	ft_makemap(char *argv, t_map *map)
@@ -92,6 +93,7 @@ static void	ft_makemap(char *argv, t_map *map)
 	map->matrix[i] = NULL;
 	map->len = ft_strlen(map->matrix[0]);
 	close(map->fd);
+	map->fd = -1;
 }
 
 static void	ft_findplayer(t_map *map)

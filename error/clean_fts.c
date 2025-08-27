@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 11:23:22 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:41:09 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_cleanmap(char *str, t_map *map, int mod)
 				free(map->matrix[i++]);
 			free(map->matrix);
 		}
-		if (map->fd)
+		if (map->fd > -1)
 			close(map->fd);
 		free(map);
 	}
