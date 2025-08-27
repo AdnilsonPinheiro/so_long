@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 09:30:50 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:23:22 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	}
 	if (game)
 	{
-		mlx_loop_end(game->mlx);
 		if (game->map)
 			ft_cleanmap(NULL, game->map, 0);
 		if (game->player && game->player->img)
