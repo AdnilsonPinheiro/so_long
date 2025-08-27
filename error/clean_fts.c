@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/26 20:16:13 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 09:30:50 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 		{
 			mlx_destroy_display(game->mlx);
 			free(game->mlx);
+			game->mlx = NULL;
 		}
 		free(game);
 	}
