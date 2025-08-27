@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/26 20:18:05 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:03:44 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_img	*ft_imginit(t_game *game, char *path);
 static int	ft_exitgame(t_game *game)
 {
 	if (game)
-		ft_cleangame(NULL, game, 0);
+		mlx_loop_end(game->mlx);
 	return (0);
 }
 
@@ -57,7 +57,7 @@ static int	render(t_game *game)
 static int	ft_keypress(int keysym, t_game *game)
 {
 	if (game && keysym == XK_Escape)
-		ft_cleangame(NULL, game, 0);
+		mlx_loop_end(game->mlx);
 	return (0);
 }
 
