@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/26 20:00:45 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:24:07 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_rect
 
 enum e_error_parse
 {
-	ALLOC,
+	ALLOC = 1,
 	NO_ARG,
 	FILE_FORM,
 	OPEN_ER,
@@ -101,7 +101,7 @@ enum e_error_parse
 
 enum e_error_game
 {
-	GAME_ALLOC,
+	GAME_ALLOC = 1,
 };
 
 /*Error and Cleaning Functions*/

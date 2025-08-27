@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 11:47:30 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:22:07 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_img	*ft_imginit(t_game *game, char *path);
 
 static int	ft_exitgame(t_game *game)
 {
-	if (game)
+	if (game && game->mlx)
 		mlx_loop_end(game->mlx);
 	return (0);
 }
@@ -79,7 +79,7 @@ static t_game	*ft_gameinit(t_map *map)
 
 	game = malloc(sizeof(t_game));
 	if (!game)
-		ft_cleanmap("Failed to allocate t_game\n", map, GAME_ALLOC);
+		ft_cleangame("Failed to allocate t_game\n", game, GAME_ALLOC);
 	ft_bzero(game, sizeof(t_game));
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -111,11 +111,12 @@ static t_img	*ft_imginit(t_game *game, char *path)
 {
 	t_img	*img;
 
-	if (!game)
+	if (!game || !game->mlx)
 		return (NULL);
 	img = malloc(sizeof(t_img));
 	if (!img)
 		return (NULL);
+	ft_bzero(img, sizeof(t_img));
 	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
 	if (!img->img)
 	{
