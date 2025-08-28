@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:22:07 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:45:32 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ static t_game	*ft_gameinit(t_map *map)
 	if (!game->win)
 		ft_cleangame("Failed to create window\n", game, GAME_ALLOC);
 	game->map = map;
-	game->collect = ft_imginit(game, "textures/collectable.xpm");
+	game->collect = ft_imginit(game, "textures/sushi_2.xpm");
 	if (!game->collect)
 		ft_cleangame("Failed to allocate collectable\n", game, GAME_ALLOC);
-	game->exit = ft_imginit(game, "textures/exit.xpm");
+	game->exit = ft_imginit(game, "textures/box_closed.xpm");
 	if (!game->exit)
 		ft_cleangame("Failed to allocate exit\n", game, GAME_ALLOC);
-	game->floor = ft_imginit(game, "textures/floor.xpm");
+	game->floor = ft_imginit(game, "textures/floor_tatami.xpm");
 	if (!game->floor)
 		ft_cleangame("Failed to allocate floor\n", game, GAME_ALLOC);
-	game->player = ft_imginit(game, "textures/player.xpm");
+	game->player = ft_imginit(game, "textures/cat_right.xpm");
 	if (!game->player)
 		ft_cleangame("Failed to allocate player\n", game, GAME_ALLOC);
-	game->wall = ft_imginit(game, "textures/wall.xpm");
+	game->wall = ft_imginit(game, "textures/bamboo.xpm");
 	if (!game->wall)
 		ft_cleangame("Failed to allocate wall\n", game, GAME_ALLOC);
 	game->movecount = 0;

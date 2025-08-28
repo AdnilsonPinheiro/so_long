@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:36:39 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:16:25 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 
 # ifndef TITLE
-#  define TITLE 32
+#  define TITLE 48
 # endif
 
 // # ifndef WIDTH
