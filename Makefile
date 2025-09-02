@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/08/27 12:32:44 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/09/02 19:53:14 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ BUILD_DIR := build
 
 #Source Files
 SRC_FILES := main.c ft_floodfill.c clean_fts.c mapcheck.c \
+			moves.c image.c utils.c \
 			libft/get_next_line.c game.c
 
 #Object Files

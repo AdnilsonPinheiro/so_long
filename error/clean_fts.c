@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:41:09 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:11:42 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 			ft_cleanimg(game, game->player);
 		if (game->floor && game->floor->img)
 			ft_cleanimg(game, game->floor);
-		if (game->collect && game->collect->img)
-			ft_cleanimg(game, game->collect);
-		if (game->enemy && game->enemy->img)
-			ft_cleanimg(game, game->enemy);
+		for (int i = 0; i < COLLECT_COUNT; i++)
+		{
+			if (game->collect[i])
+				ft_cleanimg(game, game->collect[i]);
+		}
 		if (game->wall && game->wall->img)
 			ft_cleanimg(game, game->wall);
 		if (game->exit && game->exit->img)

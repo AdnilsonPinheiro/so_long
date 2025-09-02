@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/28 20:45:32 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:12:09 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,9 @@
 #define HEIGHT TITLE * map->size
 
 static t_game	*ft_gameinit(t_map *map);
-static t_img	*ft_imginit(t_game *game, char *path);
-
-static int	ft_exitgame(t_game *game)
-{
-	if (game && game->mlx)
-		mlx_loop_end(game->mlx);
-	return (0);
-}
-
-static int	render(t_game *game)
-{
-	int	x, y;
-
-	if (!game->win || !game->mlx || !game)
-		return 0;
-	y = 0;
-	while (y < game->map->size)
-	{
-		x = 0;
-		while (x < game->map->len)
-		{
-			if (game->map->matrix[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->floor->img, x * TITLE, y * TITLE);
-			if (game->map->matrix[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wall->img, x * TITLE, y * TITLE);
-			if (game->map->matrix[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->collect->img, x * TITLE, y * TITLE);
-			if (game->map->matrix[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->exit->img, x * TITLE, y * TITLE);
-			if (game->map->matrix[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->player->img, x * TITLE, y * TITLE);
-			x++;
-		}
-		y++;
-	}
-	return 0;
-}
-
-static int	ft_keypress(int keysym, t_game *game)
-{
-	if (game && keysym == XK_Escape)
-		mlx_loop_end(game->mlx);
-	return (0);
-}
+static int		ft_exitgame(t_game *game);
+static int		ft_keypress(int keysym, t_game *game);
+static int		render(t_game *game);
 
 void	ft_game(t_map *map)
 {
@@ -87,43 +46,53 @@ static t_game	*ft_gameinit(t_map *map)
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "so_long");
 	if (!game->win)
 		ft_cleangame("Failed to create window\n", game, GAME_ALLOC);
+	ft_initallimg(game);
 	game->map = map;
-	game->collect = ft_imginit(game, "textures/sushi_2.xpm");
-	if (!game->collect)
-		ft_cleangame("Failed to allocate collectable\n", game, GAME_ALLOC);
-	game->exit = ft_imginit(game, "textures/box_closed.xpm");
-	if (!game->exit)
-		ft_cleangame("Failed to allocate exit\n", game, GAME_ALLOC);
-	game->floor = ft_imginit(game, "textures/floor_tatami.xpm");
-	if (!game->floor)
-		ft_cleangame("Failed to allocate floor\n", game, GAME_ALLOC);
-	game->player = ft_imginit(game, "textures/cat_right.xpm");
-	if (!game->player)
-		ft_cleangame("Failed to allocate player\n", game, GAME_ALLOC);
-	game->wall = ft_imginit(game, "textures/bamboo.xpm");
-	if (!game->wall)
-		ft_cleangame("Failed to allocate wall\n", game, GAME_ALLOC);
 	game->movecount = 0;
 	return (game);
 }
 
-static t_img	*ft_imginit(t_game *game, char *path)
+static int	render(t_game *game)
 {
-	t_img	*img;
+	int	x;
+	int	y;
 
-	if (!game || !game->mlx)
-		return (NULL);
-	img = malloc(sizeof(t_img));
-	if (!img)
-		return (NULL);
-	ft_bzero(img, sizeof(t_img));
-	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
-	if (!img->img)
+	if (!game->win || !game->mlx || !game)
+		return 0;
+	if (game->map->nb_c == 0)
+		ft_changeimg(game, game->exit, "textures/box_open.xpm");
+	y = 0;
+	while (y < game->map->size)
 	{
-		perror(path);
-		free(img);
-		return (NULL);
+		x = 0;
+		while (x < game->map->len)
+		{
+			ft_put_to_window(game, x, y);
+			x++;
+		}
+		y++;
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
-	return (img);
+	return 0;
+}
+
+static int	ft_keypress(int keysym, t_game *game)
+{
+	if (game && keysym == XK_Escape)
+		mlx_loop_end(game->mlx);
+	else if (game && (keysym == XK_w || keysym == XK_Up))
+		ft_move_up(game);
+	else if (game && (keysym == XK_s || keysym == XK_Down))
+		ft_move_down(game);
+	else if (game && (keysym == XK_a || keysym == XK_Left))
+		ft_move_left(game);
+	else if (game && (keysym == XK_d || keysym == XK_Right))
+		ft_move_right(game);
+	return (0);
+}
+
+static int	ft_exitgame(t_game *game)
+{
+	if (game && game->mlx)
+		mlx_loop_end(game->mlx);
+	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/28 16:16:25 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:12:15 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -24,13 +24,9 @@
 #  define TITLE 48
 # endif
 
-// # ifndef WIDTH
-// #  define WIDTH 1000
-// # endif
-
-// # ifndef HEIGHT
-// #  define HEIGHT 700
-// # endif
+# ifndef COLLECT_COUNT
+#  define COLLECT_COUNT 3
+# endif
 
 typedef struct s_map
 {
@@ -61,30 +57,13 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	int		movecount;
-	int		win_closed;
 	t_map	*map;
 	t_img	*player;
 	t_img	*floor;
 	t_img	*wall;
-	t_img	*collect;
+	t_img	*collect[COLLECT_COUNT];
 	t_img	*exit;
-	t_img	*enemy;
 }	t_game;
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_data;
-
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}	t_rect;
 
 enum e_error_parse
 {
@@ -102,6 +81,7 @@ enum e_error_parse
 enum e_error_game
 {
 	GAME_ALLOC = 1,
+	IMG_CHANGE
 };
 
 /*Error and Cleaning Functions*/
@@ -119,5 +99,21 @@ void	ft_nbcheck(t_map *map);
 
 /*Game Functions*/
 void	ft_game(t_map *map);
+
+/*Image Functions*/
+void	ft_initallimg(t_game *game);
+t_img	*ft_imginit(t_game *game, char *path);
+void	ft_put_to_window(t_game *game, int x, int y);
+void	ft_changeimg(t_game *game, t_img *img, char *path);
+
+/*Movement Functions*/
+void	ft_move_up(t_game *game);
+void	ft_move_down(t_game *game);
+void	ft_move_left(t_game *game);
+void	ft_move_right(t_game *game);
+
+/*Utils*/
+int	lcg_rand(void);
+void	ft_rand_collect(t_game *game, int x, int y);
 
 #endif
