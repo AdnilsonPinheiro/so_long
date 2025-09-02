@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:09:37 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/02 19:55:15 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:23:50 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,6 @@ void	ft_move_left(t_game *game)
 	game->map->player_x -= 1;
 	game->movecount++;
 	ft_changeimg(game, game->player, "textures/cat_left.xpm");
-	// mlx_destroy_image(game->mlx, game->player->img);
-	// game->player->img = NULL;
-	// free(game->player);
-	// game->player = ft_imginit(game, "textures/cat_left.xpm");
-	// if (!game->player)
-	// 	ft_cleangame("Failed to update player\n", game, IMG_CHANGE);
 }
 
 void	ft_move_right(t_game *game)
@@ -122,10 +116,4 @@ void	ft_move_right(t_game *game)
 	game->map->player_x += 1;
 	game->movecount++;
 	ft_changeimg(game, game->player, "textures/cat_right.xpm");
-	// mlx_destroy_image(game->mlx, game->player->img);
-	// game->player->img = NULL;
-	// free(game->player);
-	// game->player = ft_imginit(game, "textures/cat_right.xpm");
-	// if (!game->player)
-	// 	ft_cleangame("Failed to update player\n", game, IMG_CHANGE);
 }
