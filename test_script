@@ -3,6 +3,14 @@
 # Create log directory if it doesn't exist
 mkdir -p test_log
 
+#Remove reading permissions for no_perm.ber
+if [ -f maps/no_perm.ber ]; then
+	echo "Removing reading permissions for no_perm.ber"
+	chmod -r maps/no_perm.ber
+else
+	echo "Warning: couldn't find maps/no_perm.ber"
+fi
+
 # List of map files to be tested
 TEST_FILES=$(ls maps/*.ber)
 
