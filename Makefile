@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
+#    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/09/03 18:46:45 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/09/03 20:12:03 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC := cc
 
 FLAGS := -Wall -Wextra -Werror -g -Iincludes -Imlx_linux
 
-vpath %.c src error
+vpath %.c src error src_bonus
 
 LIBFT_PATH := ./libft
 LIBFT := $(LIBFT_PATH)/libft.a
@@ -38,12 +38,14 @@ SRC_FILES := main.c ft_floodfill.c clean_fts.c mapcheck.c \
 OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
 #Bonus Sources
-BONUS_SRCS := 
+BONUS_SRCS := main_bonus.c ft_floodfill_bonus.c clean_fts_bonus.c mapcheck_bonus.c \
+			moves_bonus.c image_bonus.c utils_bonus.c \
+			libft/get_next_line.c game_bonus.c
 #Bonus Objects
 BONUS_OBJ := $(BONUS_SRCS:%.c=$(BUILD_DIR)/%.o)
 
 #Norminette Directories
-NORM_DIRS := src includes
+NORM_DIRS := src includes error src_bonus
 
 .PHONY: all clean fclean re valgrind norm gdb
 
@@ -101,8 +103,14 @@ valgrind: $(NAME)
 	--track-origins=yes \
 	--track-fds=yes \
 	./$(NAME) ./maps/map.ber
-#	./$(NAME) ./maps/map.ber > log.txt 2>&1
 
+bonusvalgrind: $(BONUS_NAME)
+	@echo "$(YELLOW)Valgrind Report$(RESET)"
+	@valgrind --leak-check=full \
+	--show-leak-kinds=all \
+	--track-origins=yes \
+	--track-fds=yes \
+	./$(BONUS_NAME) ./maps_bonus/map.ber
 
 gdb: $(NAME)
 	@gdb --tui --args ./$(NAME) ./maps/map.ber
@@ -117,9 +125,9 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -rf test_log
 	@echo "$(BLUE)Cleaned test_log$(RESET)"
-#	@rm -f $(BONUS_NAME)
+	@rm -f $(BONUS_NAME)
 	@make --no-print-directory -C $(LIBFT_PATH) fclean
-	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME)"
+	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME) $(BONUS_NAME)"
 
 re: fclean all
 
@@ -133,7 +141,7 @@ help:
 	@echo "  re            - Clean and rebuild everything"
 	@echo "  norm          - Run norminette checks"
 	@echo "  valgrind      - Run valgrind on mandatory"
-#	@echo "  bonusvalgrind - Run valgrind on bonus"
+	@echo "  bonusvalgrind - Run valgrind on bonus"
 	@echo "  gdb           - Start gdb on mandatory"
 #	@echo "  bonusgdb      - Start gdb on bonus"
 

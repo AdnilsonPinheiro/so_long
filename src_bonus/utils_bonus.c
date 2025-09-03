@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:44:33 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 19:13:50 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:20:56 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ void	ft_rand_collect(t_game *game, int x, int y)
 	rand_index = lcg_rand() % COLLECT_COUNT;
 	mlx_put_image_to_window(game->mlx, game->win,
 		game->collect[rand_index]->img, x * TITLE, y * TITLE);
+}
+
+void	ft_rand_enemy(t_game *game, int x, int y)
+{
+	int	rand_index;
+
+	if (!game)
+		return ;
+	g_seed = x * 1000 + y * 100 + 12345;
+	rand_index = lcg_rand() % ENEMY_COUNT;
+	mlx_put_image_to_window(game->mlx, game->win, 
+		game->enemy[rand_index]->img, x * TITLE, y * TITLE);
 }

@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:05:07 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:02:24 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:21:28 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	ft_initallimg(t_game *game);
 t_img	*ft_imginit(t_game *game, char *path);
 void	ft_put_to_window(t_game *game, int x, int y);
 void	ft_changeimg(t_game *game, t_img *img, char *path);
+void	ft_initarr(t_game *game, t_img *img[], char *path[], int size);
 
 /*Movement Functions*/
 void	ft_move_up(t_game *game);
@@ -136,5 +137,6 @@ void	ft_move_right(t_game *game);
 /*Utils*/
 int		lcg_rand(void);
 void	ft_rand_collect(t_game *game, int x, int y);
+void	ft_rand_enemy(t_game *game, int x, int y);
 
 #endif

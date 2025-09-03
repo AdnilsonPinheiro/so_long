@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:12:21 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:02:21 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:21:05 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,10 @@
 
 void	ft_initallimg(t_game *game)
 {
-	int	i;
-
 	if (!game)
 		return ;
 	ft_initarr(game, game->collect, COLLECT_IMG, COLLECT_COUNT);
 	ft_initarr(game, game->enemy, ENEMY_IMG, ENEMY_COUNT);
-	// game->collect[0] = ft_imginit(game, "textures/sushi_1.xpm");
-	// game->collect[1] = ft_imginit(game, "textures/sushi_2.xpm");
-	// game->collect[2] = ft_imginit(game, "textures/sushi_3.xpm");
-	// i = -1;
-	// while (++i < COLLECT_COUNT)
-	// {
-	// 	if (!game->collect[i])
-	// 		ft_cleangame("Failed to alloc collectable\n", game, GAME_ALLOC);
-	// }
 	game->exit = ft_imginit(game, "textures/box_closed.xpm");
 	if (!game->exit)
 		ft_cleangame("Failed to allocate exit\n", game, GAME_ALLOC);
@@ -78,6 +67,8 @@ void	ft_put_to_window(t_game *game, int x, int y)
 			x * TITLE, y * TITLE);
 	if (game->map->matrix[y][x] == 'C')
 		ft_rand_collect(game, x, y);
+	if (game->map->matrix[y][x] == 'X')
+		ft_rand_enemy(game, x, y);
 	if (game->map->matrix[y][x] == 'E')
 		mlx_put_image_to_window(game->mlx, game->win, game->exit->img,
 			x * TITLE, y * TITLE);
@@ -109,7 +100,7 @@ void	ft_initarr(t_game *game, t_img *img[], char *path[], int size)
 	i = 0;
 	while (i < size)
 	{
-		img[i] = ft_imginit(game, path);
+		img[i] = ft_imginit(game, path[i]);
 		if (!img[i])
 			ft_cleangame("Failed to attribute image\n", game, GAME_ALLOC);
 		i++;
