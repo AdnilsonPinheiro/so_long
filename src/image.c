@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:12:21 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/02 20:20:30 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:30:42 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_initallimg(t_game *game)
 	while (++i < COLLECT_COUNT)
 	{
 		if (!game->collect[i])
-			ft_cleangame("Failed to allocate collectable img\n", game, GAME_ALLOC);
+			ft_cleangame("Failed to alloc collectable\n", game, GAME_ALLOC);
 	}
 	game->exit = ft_imginit(game, "textures/box_closed.xpm");
 	if (!game->exit)
@@ -51,14 +51,16 @@ t_img	*ft_imginit(t_game *game, char *path)
 	if (!img)
 		return (NULL);
 	ft_bzero(img, sizeof(t_img));
-	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
+	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width,
+			&img->height);
 	if (!img->img)
 	{
 		perror(path);
 		free(img);
 		return (NULL);
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len,
+			&img->endian);
 	return (img);
 }
 
@@ -67,15 +69,19 @@ void	ft_put_to_window(t_game *game, int x, int y)
 	if (!game || !game->map || !game->map->matrix)
 		return ;
 	if (game->map->matrix[y][x] == '0')
-		mlx_put_image_to_window(game->mlx, game->win, game->floor->img, x * TITLE, y * TITLE);
+		mlx_put_image_to_window(game->mlx, game->win, game->floor->img,
+			x * TITLE, y * TITLE);
 	if (game->map->matrix[y][x] == '1')
-		mlx_put_image_to_window(game->mlx, game->win, game->wall->img, x * TITLE, y * TITLE);
+		mlx_put_image_to_window(game->mlx, game->win, game->wall->img,
+			x * TITLE, y * TITLE);
 	if (game->map->matrix[y][x] == 'C')
 		ft_rand_collect(game, x, y);
 	if (game->map->matrix[y][x] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win, game->exit->img, x * TITLE, y * TITLE);
+		mlx_put_image_to_window(game->mlx, game->win, game->exit->img,
+			x * TITLE, y * TITLE);
 	if (game->map->matrix[y][x] == 'P')
-		mlx_put_image_to_window(game->mlx, game->win, game->player->img, x * TITLE, y * TITLE);
+		mlx_put_image_to_window(game->mlx, game->win, game->player->img,
+			x * TITLE, y * TITLE);
 }
 
 void	ft_changeimg(t_game *game, t_img *img, char *path)
@@ -84,8 +90,10 @@ void	ft_changeimg(t_game *game, t_img *img, char *path)
 		return ;
 	if (img->img)
 		mlx_destroy_image(game->mlx, img->img);
-	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
+	img->img = mlx_xpm_file_to_image(game->mlx, path, &img->width,
+			&img->height);
 	if (!img->img)
 		ft_cleangame("Failed to change image\n", game, IMG_CHANGE);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len,
+			&img->endian);
 }

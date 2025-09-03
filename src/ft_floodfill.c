@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/26 16:23:48 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:23:40 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ static void	ft_freematrix(char **matrix, t_map *map);
 void	ft_floodfill(t_map *map, int y, int x)
 {
 	char	**matrix;
-	//char	player;
 
 	matrix = ft_matrixdup(map);
-	//player = matrix[y][x];
 	ft_fill(matrix, y, x);
 	ft_checkfill(matrix, map);
 	ft_freematrix(matrix, NULL);

@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/02 19:11:42 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:41:25 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,7 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	{
 		if (game->map)
 			ft_cleanmap(NULL, game->map, 0);
-		if (game->player && game->player->img)
-			ft_cleanimg(game, game->player);
-		if (game->floor && game->floor->img)
-			ft_cleanimg(game, game->floor);
-		for (int i = 0; i < COLLECT_COUNT; i++)
-		{
-			if (game->collect[i])
-				ft_cleanimg(game, game->collect[i]);
-		}
-		if (game->wall && game->wall->img)
-			ft_cleanimg(game, game->wall);
-		if (game->exit && game->exit->img)
-			ft_cleanimg(game, game->exit);
+		ft_clean_all_img(game);
 		if (game->win)
 		{
 			mlx_destroy_window(game->mlx, game->win);
@@ -77,6 +65,28 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	}
 	if (mod != 0)
 		exit(EXIT_FAILURE);
+}
+
+void	ft_clean_all_img(t_game *game)
+{
+	int	i;
+
+	if (!game)
+		return ;
+	if (game->exit)
+		ft_cleanimg(game, game->exit);
+	if (game->floor)
+		ft_cleanimg(game, game->floor);
+	if (game->player)
+		ft_cleanimg(game, game->player);
+	if (game->wall)
+		ft_cleanimg(game, game->wall);
+	i = 0;
+	while (i < COLLECT_COUNT)
+	{
+		ft_cleanimg(game, game->collect[i]);
+		i++;
+	}
 }
 
 void	ft_cleanimg(t_game *game, t_img *img)

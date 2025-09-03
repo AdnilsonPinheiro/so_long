@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/02 20:12:15 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:46:36 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ enum e_error_game
 /*Error and Cleaning Functions*/
 void	ft_cleanmap(char *str, t_map *map, int mod);
 void	ft_cleangame(char *str, t_game *game, int mod);
+void	ft_clean_all_img(t_game *game);
 void	ft_cleanimg(t_game *game, t_img *img);
 
 /*Parsing Functions*/
@@ -113,7 +114,7 @@ void	ft_move_left(t_game *game);
 void	ft_move_right(t_game *game);
 
 /*Utils*/
-int	lcg_rand(void);
+int		lcg_rand(void);
 void	ft_rand_collect(t_game *game, int x, int y);
 
 #endif

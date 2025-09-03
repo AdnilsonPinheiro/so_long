@@ -6,14 +6,11 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/02 20:12:09 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:45:45 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#define WIDTH TITLE * map->len
-#define HEIGHT TITLE * map->size
 
 static t_game	*ft_gameinit(t_map *map);
 static int		ft_exitgame(t_game *game);
@@ -34,7 +31,7 @@ void	ft_game(t_map *map)
 
 static t_game	*ft_gameinit(t_map *map)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -43,7 +40,7 @@ static t_game	*ft_gameinit(t_map *map)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_cleangame("Failed to initialize display\n", game, GAME_ALLOC);
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "so_long");
+	game->win = mlx_new_window(game->mlx, TITLE * map->len, TITLE * map->size, "so_long");
 	if (!game->win)
 		ft_cleangame("Failed to create window\n", game, GAME_ALLOC);
 	ft_initallimg(game);
@@ -58,7 +55,7 @@ static int	render(t_game *game)
 	int	y;
 
 	if (!game->win || !game->mlx || !game)
-		return 0;
+		return (0);
 	if (game->map->nb_c == 0)
 		ft_changeimg(game, game->exit, "textures/box_open.xpm");
 	y = 0;
@@ -72,7 +69,7 @@ static int	render(t_game *game)
 		}
 		y++;
 	}
-	return 0;
+	return (0);
 }
 
 static int	ft_keypress(int keysym, t_game *game)
