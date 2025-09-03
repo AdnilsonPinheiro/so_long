@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 14:23:40 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:54:24 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	**ft_matrixdup(t_map *map);
 static void	ft_fill(char **matrix, int y, int x);
 static void	ft_checkfill(char **matrix, t_map *map);
-static void	ft_freematrix(char **matrix, t_map *map);
+//static void	ft_freematrix(char **matrix, t_map *map);
 
 void	ft_floodfill(t_map *map, int y, int x)
 {
@@ -24,6 +24,10 @@ void	ft_floodfill(t_map *map, int y, int x)
 	matrix = ft_matrixdup(map);
 	ft_fill(matrix, y, x);
 	ft_checkfill(matrix, map);
+	ft_freematrix(matrix, NULL);
+	matrix = ft_matrixdup(map);
+	ft_fillexit(matrix, y, x);
+	ft_checkexit(matrix, map);
 	ft_freematrix(matrix, NULL);
 }
 
@@ -53,12 +57,12 @@ static char	**ft_matrixdup(t_map *map)
 
 static void	ft_fill(char **matrix, int y, int x)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (matrix[i])
 		i++;
-	if (matrix[y][x] == 'F' || matrix[y][x] == '1' || matrix[y][x] == '\0')
+	if (ft_strchr("FE1", matrix[y][x]) || matrix[y][x] == '\0')
 		return ;
 	else if (y < 0 || x < 0 || x > (int)ft_strlen(matrix[y]) || y >= i)
 		return ;
@@ -80,26 +84,26 @@ static void	ft_checkfill(char **matrix, t_map *map)
 		j = -1;
 		while (matrix[i][++j])
 		{
-			if (matrix[i][j] == 'E' || matrix[i][j] == 'C')
+			if (matrix[i][j] == 'C')
 			{
 				ft_freematrix(matrix, NULL);
-				ft_cleanmap("Map not solvable\n", map, FLOOD_ER);
+				ft_cleanmap("Collectable out of reach\n", map, FLOOD_ER);
 			}
 		}
 	}
 }
 
-static void	ft_freematrix(char **matrix, t_map *map)
-{
-	int	i;
+// static void	ft_freematrix(char **matrix, t_map *map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (matrix[i])
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
-	if (map)
-		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
-}
+// 	i = 0;
+// 	while (matrix[i])
+// 	{
+// 		free(matrix[i]);
+// 		i++;
+// 	}
+// 	free(matrix);
+// 	if (map)
+// 		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
+// }

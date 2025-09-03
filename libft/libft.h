@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 20:50:47 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/08 17:10:47 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:18:26 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -101,4 +102,11 @@ char	*ft_line(char *stash);
 char	*ft_update(char *stash);
 void	get_next_line_clear(void);
 
+/*ft_printf and its helpers*/
+int		ft_printf(const char *str, ...);
+int		ft_putchar(const char c);
+int		ft_putstr(const char *str);
+int		ft_putnbr(long int n);
+int		ft_putptr(void *s);
+int		ft_puthex(unsigned long nbr, const char chr);
 #endif

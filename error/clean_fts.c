@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 14:41:25 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:42:44 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,19 @@ void	ft_cleanimg(t_game *game, t_img *img)
 		img->img = NULL;
 	}
 	free(img);
+}
+
+void	ft_freematrix(char **matrix, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+	if (map)
+		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
 }

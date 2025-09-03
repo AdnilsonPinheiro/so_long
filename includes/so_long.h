@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:13:54 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 14:46:36 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:08:28 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ enum e_error_game
 
 /*Error and Cleaning Functions*/
 void	ft_cleanmap(char *str, t_map *map, int mod);
+void	ft_freematrix(char **matrix, t_map *map);
 void	ft_cleangame(char *str, t_game *game, int mod);
 void	ft_clean_all_img(t_game *game);
 void	ft_cleanimg(t_game *game, t_img *img);
@@ -97,6 +98,8 @@ void	ft_validchar(t_map *map);
 void	ft_isrect(t_map *map);
 void	ft_checkwall(t_map *map, size_t len);
 void	ft_nbcheck(t_map *map);
+void	ft_fillexit(char **matrix, int y, int x);
+void	ft_checkexit(char **matrix, t_map *map);
 
 /*Game Functions*/
 void	ft_game(t_map *map);

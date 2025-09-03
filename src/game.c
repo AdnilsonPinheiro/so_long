@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 14:45:45 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:07:37 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static t_game	*ft_gameinit(t_map *map)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_cleangame("Failed to initialize display\n", game, GAME_ALLOC);
-	game->win = mlx_new_window(game->mlx, TITLE * map->len, TITLE * map->size, "so_long");
+	game->win = mlx_new_window(game->mlx, TITLE * map->len,
+			TITLE * map->size, "so_long");
 	if (!game->win)
 		ft_cleangame("Failed to create window\n", game, GAME_ALLOC);
 	ft_initallimg(game);
