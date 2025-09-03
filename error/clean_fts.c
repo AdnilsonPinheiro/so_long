@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_fts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 16:42:44 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:40:53 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	ft_cleanmap(char *str, t_map *map, int mod)
 void	ft_cleangame(char *str, t_game *game, int mod)
 {
 	if (str)
-	{
-		ft_putstr_fd("Error!\n", 2);
 		ft_putstr_fd(str, 2);
-	}
 	if (game)
 	{
 		if (game->map)

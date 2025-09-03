@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:05:07 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:21:28 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:57:55 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # endif
 
 # ifndef ENEMY_COUNT
-#  define ENEMY_COUNT 4
+#  define ENEMY_COUNT 3
 # endif
 
 # ifndef COLLECT_IMG
@@ -39,8 +39,7 @@
 
 # ifndef ENEMY_IMG
 #  define ENEMY_IMG ((char *[]){"textures/dog_left.xpm", \
-	"textures/dog_right.xpm", "textures/lady_left.xpm", \
-	"textures/lady_right.xpm"})
+	"textures/dog_right.xpm", "textures/lady_left.xpm"})
 # endif
 
 typedef struct s_map
@@ -98,7 +97,8 @@ enum e_error_parse
 enum e_error_game
 {
 	GAME_ALLOC = 1,
-	IMG_CHANGE
+	IMG_CHANGE,
+	KILL_ER
 };
 
 /*Error and Cleaning Functions*/

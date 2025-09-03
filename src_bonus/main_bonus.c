@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 19:09:27 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:29:19 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nTry ./so_long map.ber\n", 2);
 		return (1);
 	}
+	ft_bzero(map, sizeof(t_map));
 	ft_parse(argv[1], map);
 	ft_game(map);
 	ft_putstr_fd("Program closed gracefully =)\n", 1);
