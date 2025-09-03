@@ -6,7 +6,7 @@
 #    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/09/03 17:09:27 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/09/03 18:46:45 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,15 @@ $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_PATH)
 
 #Compile library libmlx_Linux.a
+# Compile library libmlx_Linux.a
 $(MLX_LIB):
+	@if [ ! -d "$(MLX_PATH)" ]; then \
+		echo "$(YELLOW)minilibx not found. Cloning from GitHub...$(RESET)"; \
+		git clone https://github.com/42paris/minilibx-linux.git $(MLX_PATH) || { \
+			echo "$(RED)Failed to clone repository$(RESET)"; \
+			exit 1; \
+		}; \
+	fi
 	@make --no-print-directory -C $(MLX_PATH)
 
 #Create BUILD directory if it doesn't exist
@@ -107,6 +115,8 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf test_log
+	@echo "$(BLUE)Cleaned test_log$(RESET)"
 #	@rm -f $(BONUS_NAME)
 	@make --no-print-directory -C $(LIBFT_PATH) fclean
 	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME)"

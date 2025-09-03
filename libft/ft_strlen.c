@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:16:41 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/07/22 19:13:29 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:24:52 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *c)
 {
 	int	i;
 
+	if (!c)
+		return (0);
 	i = 0;
 	while (c[i] && c[i] != '\0')
 		i++;
