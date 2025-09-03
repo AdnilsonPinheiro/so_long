@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:12:21 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 19:43:11 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:02:21 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_initallimg(t_game *game)
 
 	if (!game)
 		return ;
-	ft_initarr(game, game->collect, path, COLLECT_COUNT);
-	ft_initarr(game, game->enemy, path, ENEMY_COUNT);
+	ft_initarr(game, game->collect, COLLECT_IMG, COLLECT_COUNT);
+	ft_initarr(game, game->enemy, ENEMY_IMG, ENEMY_COUNT);
 	// game->collect[0] = ft_imginit(game, "textures/sushi_1.xpm");
 	// game->collect[1] = ft_imginit(game, "textures/sushi_2.xpm");
 	// game->collect[2] = ft_imginit(game, "textures/sushi_3.xpm");
@@ -100,7 +100,7 @@ void	ft_changeimg(t_game *game, t_img *img, char *path)
 			&img->endian);
 }
 
-void	ft_initarr(t_game *game, t_img *img[], char *path, int size)
+void	ft_initarr(t_game *game, t_img *img[], char *path[], int size)
 {
 	int	i;
 

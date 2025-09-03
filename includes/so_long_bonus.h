@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:05:07 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 19:45:33 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:02:24 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@
 #  define ENEMY_COUNT 4
 # endif
 
-#ifndef
+# ifndef COLLECT_IMG
+#  define COLLECT_IMG ((char *[]){"textures/sushi_1.xpm", \
+	"textures/sushi_2.xpm", "textures/sushi_3.xpm"})
+# endif
+
+# ifndef ENEMY_IMG
+#  define ENEMY_IMG ((char *[]){"textures/dog_left.xpm", \
+	"textures/dog_right.xpm", "textures/lady_left.xpm", \
+	"textures/lady_right.xpm"})
+# endif
 
 typedef struct s_map
 {
@@ -43,6 +52,7 @@ typedef struct s_map
 	int		nb_c;
 	int		nb_e;
 	int		nb_p;
+	int		nb_x;
 	int		player_x;
 	int		player_y;
 }	t_map;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapcheck.c                                         :+:      :+:    :+:   */
+/*   mapcheck_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:50:52 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:40:00 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:02:18 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_isber(char *argv, t_map *map)
 {
@@ -44,7 +44,9 @@ void	ft_validchar(t_map *map)
 				map->nb_p++;
 			if (map->matrix[i][j] == 'E')
 				map->nb_e++;
-			if (!ft_strchr("CPE01", map->matrix[i][j]))
+			if (map->matrix[i][j] == 'X')
+				map->nb_x++;
+			if (!ft_strchr("CPEX01", map->matrix[i][j]))
 				ft_cleanmap("Map has invalid elements\n", map, CHAR_ER);
 			j++;
 		}
@@ -101,4 +103,6 @@ void	ft_nbcheck(t_map *map)
 		ft_cleanmap("Must have one, and only one, exit\n", map, NB_ER);
 	else if (map->nb_p != 1)
 		ft_cleanmap("Must have one, and only one, player\n", map, NB_ER);
+	else if (map->nb_x < 1)
+		ft_cleanmap("Must have at least one enemy\n", map, NB_ER);
 }
