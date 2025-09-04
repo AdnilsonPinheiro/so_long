@@ -11,11 +11,8 @@ else
 	echo "Warning: couldn't find maps/no_perm.ber"
 fi
 
-# List of map files to be tested
-TEST_FILES=$(ls maps/*.ber)
-
 # Loop through each map
-for file in $TEST_FILES; do
+for file in maps/*.ber; do
 	# Extract the basename of the file without extension
 	base=$(basename "$file" .ber)
 	log="test_log/${base}_valgrind.log"

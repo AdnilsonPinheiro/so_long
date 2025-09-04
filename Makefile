@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
+#    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/09/03 20:45:30 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/09/04 10:56:43 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ bonusvalgrind: $(BONUS_NAME)
 	--show-leak-kinds=all \
 	--track-origins=yes \
 	--track-fds=yes \
-	./$(BONUS_NAME) ./maps_bonus/map.ber
+	./$(BONUS_NAME) ./maps_bonus/map_bonus.ber
 
 gdb: $(NAME)
 	@gdb --tui --args ./$(NAME) ./maps/map.ber
@@ -128,6 +128,8 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -rf test_log
 	@echo "$(BLUE)Cleaned test_log$(RESET)"
+	@rm -rf test_bonus_log
+	@echo "$(BLUE)Cleaned test_bonus_log$(RESET)"
 	@rm -f $(BONUS_NAME)
 	@make --no-print-directory -C $(LIBFT_PATH) fclean
 	@echo "$(BLUE)Cleaned executables$(RESET) $(NAME) $(BONUS_NAME)"

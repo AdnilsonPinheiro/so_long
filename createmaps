@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Ensure the destination directory exists
+mkdir -p maps_bonus
+
+# Loop through each .ber file in maps/
+for file in maps/*.ber; do
+	# Get the base name without extension
+	base=$(basename "$file" .ber)
+
+	# Create the new filename with _bonus
+	bonus_file="${base}_bonus.ber"
+
+	# Only copy if the bonus file doesn't already exist
+	if [ ! -f "maps_bonus/$bonus_file" ]; then
+		cp "$file" "maps_bonus/$bonus_file"
+		echo "Copied $file to maps_bonus/$bonus_file"
+	else
+		echo "Skipped $file — maps_bonus/$bonus_file already exists"
+	fi
+done

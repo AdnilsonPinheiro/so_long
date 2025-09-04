@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:05:07 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:57:55 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 09:29:32 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # endif
 
 # ifndef ENEMY_IMG
-#  define ENEMY_IMG ((char *[]){"textures/dog_left.xpm", \
-	"textures/dog_right.xpm", "textures/lady_left.xpm"})
+#  define ENEMY_IMG ((char *[]){"textures/dog.xpm", \
+	"textures/man.xpm", "textures/lady.xpm"})
 # endif
 
 typedef struct s_map
