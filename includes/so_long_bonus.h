@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:05:07 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 09:29:32 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:29:57 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
@@ -30,16 +30,6 @@
 
 # ifndef ENEMY_COUNT
 #  define ENEMY_COUNT 3
-# endif
-
-# ifndef COLLECT_IMG
-#  define COLLECT_IMG ((char *[]){"textures/sushi_1.xpm", \
-	"textures/sushi_2.xpm", "textures/sushi_3.xpm"})
-# endif
-
-# ifndef ENEMY_IMG
-#  define ENEMY_IMG ((char *[]){"textures/dog.xpm", \
-	"textures/man.xpm", "textures/lady.xpm"})
 # endif
 
 typedef struct s_map
@@ -138,5 +128,7 @@ void	ft_move_right(t_game *game);
 int		lcg_rand(void);
 void	ft_rand_collect(t_game *game, int x, int y);
 void	ft_rand_enemy(t_game *game, int x, int y);
+char	**ft_estr(t_game *game);
+char	**ft_cstr(t_game *game);
 
 #endif

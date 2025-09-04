@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:54:23 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:05:59 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	ft_cleanmap(char *str, t_map *map, int mod)
 void	ft_cleangame(char *str, t_game *game, int mod)
 {
 	if (str)
-	{
-		ft_putstr_fd("Error!\n", 2);
 		ft_putstr_fd(str, 2);
-	}
 	if (game)
 	{
 		if (game->map)
@@ -63,8 +60,10 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 		}
 		free(game);
 	}
-	if (mod != 0)
+	if (mod != 0 && mod != INT_MAX)
 		exit(EXIT_FAILURE);
+	if (mod == INT_MAX)
+		exit(EXIT_SUCCESS);
 }
 
 void	ft_clean_all_img(t_game *game)

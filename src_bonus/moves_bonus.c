@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:09:37 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:53:59 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:48:01 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_move_up(t_game *game)
 	if (game->map->matrix[new][x] == 'C')
 		game->map->nb_c--;
 	if (game->map->matrix[new][x] == 'X')
-		ft_cleangame("You we're killed =(\n", game, KILL_ER);
+		ft_cleangame("No one moved and yet you died?!\n", game, INT_MAX);
 	if (game->map->matrix[new][x] == 'E' && game->map->nb_c > 0)
 		return ;
 	if (game->map->matrix[new][x] == 'E' && game->map->nb_c == 0)
@@ -36,6 +36,7 @@ void	ft_move_up(t_game *game)
 	game->map->matrix[game->map->player_y][x] = '0';
 	game->map->player_y -= 1;
 	game->movecount++;
+	ft_printf("Moves made so far: %d\n", game->movecount);
 }
 
 void	ft_move_down(t_game *game)
@@ -50,7 +51,7 @@ void	ft_move_down(t_game *game)
 	if (game->map->matrix[new][x] == 'C')
 		game->map->nb_c--;
 	if (game->map->matrix[new][x] == 'X')
-		ft_cleangame("You we're killed =(\n", game, KILL_ER);
+		ft_cleangame("No one moved and yet you died?!\n", game, INT_MAX);
 	if (game->map->matrix[new][x] == 'E' && game->map->nb_c > 0)
 		return ;
 	if (game->map->matrix[new][x] == 'E' && game->map->nb_c == 0)
@@ -62,6 +63,7 @@ void	ft_move_down(t_game *game)
 	game->map->matrix[game->map->player_y][x] = '0';
 	game->map->player_y += 1;
 	game->movecount++;
+	ft_printf("Moves made so far: %d\n", game->movecount);
 }
 
 void	ft_move_left(t_game *game)
@@ -76,7 +78,7 @@ void	ft_move_left(t_game *game)
 	if (game->map->matrix[y][new] == 'C')
 		game->map->nb_c--;
 	if (game->map->matrix[y][new] == 'X')
-		ft_cleangame("You we're killed =(\n", game, KILL_ER);
+		ft_cleangame("No one moved and yet you died?!\n", game, INT_MAX);
 	if (game->map->matrix[y][new] == 'E' && game->map->nb_c > 0)
 		return ;
 	if (game->map->matrix[y][new] == 'E' && game->map->nb_c == 0)
@@ -89,6 +91,7 @@ void	ft_move_left(t_game *game)
 	game->map->player_x -= 1;
 	game->movecount++;
 	ft_changeimg(game, game->player, "textures/cat_left.xpm");
+	ft_printf("Moves made so far: %d\n", game->movecount);
 }
 
 void	ft_move_right(t_game *game)
@@ -103,7 +106,7 @@ void	ft_move_right(t_game *game)
 	if (game->map->matrix[y][new] == 'C')
 		game->map->nb_c--;
 	if (game->map->matrix[y][new] == 'X')
-		ft_cleangame("You we're killed =(\n", game, KILL_ER);
+		ft_cleangame("No one moved and yet you died?!\n", game, INT_MAX);
 	if (game->map->matrix[y][new] == 'E' && game->map->nb_c > 0)
 		return ;
 	if (game->map->matrix[y][new] == 'E' && game->map->nb_c == 0)
@@ -116,4 +119,5 @@ void	ft_move_right(t_game *game)
 	game->map->player_x += 1;
 	game->movecount++;
 	ft_changeimg(game, game->player, "textures/cat_right.xpm");
+	ft_printf("Moves made so far: %d\n", game->movecount);
 }

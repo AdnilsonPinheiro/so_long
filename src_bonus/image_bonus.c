@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:12:21 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:21:05 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:28:37 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 void	ft_initallimg(t_game *game)
 {
+	char	**e_img;
+	char	**c_img;
+
 	if (!game)
 		return ;
-	ft_initarr(game, game->collect, COLLECT_IMG, COLLECT_COUNT);
-	ft_initarr(game, game->enemy, ENEMY_IMG, ENEMY_COUNT);
+	e_img = ft_estr(game);
+	c_img = ft_cstr(game);
+	ft_initarr(game, game->collect, c_img, COLLECT_COUNT);
+	ft_initarr(game, game->enemy, e_img, ENEMY_COUNT);
+	free(e_img);
+	free(c_img);
 	game->exit = ft_imginit(game, "textures/box_closed.xpm");
 	if (!game->exit)
 		ft_cleangame("Failed to allocate exit\n", game, GAME_ALLOC);
@@ -96,7 +103,7 @@ void	ft_initarr(t_game *game, t_img *img[], char *path[], int size)
 	int	i;
 
 	if (!game || !img || !path)
-		return;
+		return ;
 	i = 0;
 	while (i < size)
 	{

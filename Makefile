@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+         #
+#    By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 20:09:29 by adpinhei          #+#    #+#              #
-#    Updated: 2025/09/04 10:56:43 by adpinhei         ###   ########.fr        #
+#    Updated: 2025/09/04 18:10:09 by adpinhei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ_FILES := $(SRC_FILES:%.c=$(BUILD_DIR)/%.o)
 
 #Bonus Sources
 BONUS_SRCS := main_bonus.c ft_floodfill_bonus.c clean_fts_bonus.c mapcheck_bonus.c \
-			moves_bonus.c image_bonus.c utils_bonus.c \
+			moves_bonus.c image_bonus.c utils_bonus.c utils_bonus_2.c \
 			libft/get_next_line.c game_bonus.c
 #Bonus Objects
 BONUS_OBJ := $(BONUS_SRCS:%.c=$(BUILD_DIR)/%.o)

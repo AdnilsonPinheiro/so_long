@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:39:34 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:04:47 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		ft_cleanmap("Failed to allocate for t_map *map\n", NULL, ALLOC);
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nTry ./so_long map.ber\n", 2);
+		ft_putstr_fd("Error\nTry ./so_long maps/map.ber\n", 2);
 		return (1);
 	}
 	ft_parse(argv[1], map);

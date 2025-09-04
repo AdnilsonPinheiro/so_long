@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 21:47:23 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/07/30 18:20:13 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:29:57 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*ft_itoa(int n)
 	res = (char *)malloc((sizeof(char) * (len + 1)));
 	if (!res)
 		return (NULL);
+	ft_bzero(res, sizeof(*res));
 	if (n < 0)
 	{
 		res[0] = '-';
