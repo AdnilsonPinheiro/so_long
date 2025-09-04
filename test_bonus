@@ -5,7 +5,6 @@ mkdir -p test_bonus_log
 
 # Remove reading permissions for no_perm_bonus.ber
 if [ -f maps_bonus/no_perm_bonus.ber ]; then
-	echo "Removing reading permissions for no_perm_bonus.ber"
 	chmod -r maps_bonus/no_perm_bonus.ber
 else
 	echo "Warning: couldn't find maps_bonus/no_perm_bonus.ber"
@@ -21,3 +20,10 @@ for file in maps_bonus/*.ber; do
 	valgrind --leak-check=full --show-leak-kinds=all --log-file="$log" ./so_long_bonus "$file"
 	echo "Log saved to $log"
 done
+
+# Restore reading permissions to no_perm_bonus.ber so it can be commited
+if [ -f maps_bonus/no_perm_bonus.ber ]; then
+	chmod +r maps_bonus/no_perm_bonus.ber
+else
+	echo "Warning: couldn't find maps_bonus/no_perm_bonus.ber"
+fi

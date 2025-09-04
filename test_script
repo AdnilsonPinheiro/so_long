@@ -5,7 +5,6 @@ mkdir -p test_log
 
 #Remove reading permissions for no_perm.ber
 if [ -f maps/no_perm.ber ]; then
-	echo "Removing reading permissions for no_perm.ber"
 	chmod -r maps/no_perm.ber
 else
 	echo "Warning: couldn't find maps/no_perm.ber"
@@ -21,3 +20,10 @@ for file in maps/*.ber; do
 	valgrind --leak-check=full --show-leak-kinds=all --log-file="$log" ./so_long "$file"
 	echo "Log saved to $log"
 done
+
+# Restore reading permission to no_perm.ber so it can be commited
+if [ -f maps/no_perm.ber ]; then
+	chmod +r maps/no_perm.ber
+else
+	echo "Warning: couldn't find maps/no_perm.ber"
+fi
