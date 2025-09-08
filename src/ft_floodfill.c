@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_floodfill.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 16:54:24 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:18:32 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char	**ft_matrixdup(t_map *map);
 static void	ft_fill(char **matrix, int y, int x);
 static void	ft_checkfill(char **matrix, t_map *map);
-//static void	ft_freematrix(char **matrix, t_map *map);
 
 void	ft_floodfill(t_map *map, int y, int x)
 {
@@ -92,18 +91,3 @@ static void	ft_checkfill(char **matrix, t_map *map)
 		}
 	}
 }
-
-// static void	ft_freematrix(char **matrix, t_map *map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (matrix[i])
-// 	{
-// 		free(matrix[i]);
-// 		i++;
-// 	}
-// 	free(matrix);
-// 	if (map)
-// 		ft_cleanmap("Failed to copy map->matrix\n", map, FLOOD_ER);
-// }

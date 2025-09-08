@@ -6,12 +6,15 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 15:05:59 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:48:41 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
+/// @brief used to clean map either in error or in program success
+/// @param str to be printed in case of error. NULL if not
+/// @param map the struct of the parsing elements
+/// @param mod passed through macros in case of error
 void	ft_cleanmap(char *str, t_map *map, int mod)
 {
 	int	i;
@@ -37,7 +40,10 @@ void	ft_cleanmap(char *str, t_map *map, int mod)
 	if (mod != 0)
 		exit(EXIT_FAILURE);
 }
-
+/// @brief cleans game struct in error or end of program
+/// @param str to be passed in case of error. NULL in success
+/// @param game struct with all game elements
+/// @param mod passed through macros in case of error or coming across an enemy
 void	ft_cleangame(char *str, t_game *game, int mod)
 {
 	if (str)
@@ -65,7 +71,8 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	if (mod == INT_MAX)
 		exit(EXIT_SUCCESS);
 }
-
+/// @brief 
+/// @param game 
 void	ft_clean_all_img(t_game *game)
 {
 	int	i;

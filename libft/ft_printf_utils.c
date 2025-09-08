@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:15:14 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 17:13:53 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:32:29 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	ft_putptr(void *s)
 	count += ft_puthex(add, 'x');
 	return (count);
 }
+
 int	ft_puthex(unsigned long nbr, const char chr)
 {
 	int		i;
