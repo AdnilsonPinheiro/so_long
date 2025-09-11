@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:44:33 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 17:52:04 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:04:33 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_rand_collect(t_game *game, int x, int y)
 	mlx_put_image_to_window(game->mlx, game->win,
 		game->collect[rand_index]->img, x * TITLE, y * TITLE);
 }
-
+/// @brief assigns different enemy sprite based on lcg_rand and the enemy's coordinates
 void	ft_rand_enemy(t_game *game, int x, int y)
 {
 	int	rand_index;

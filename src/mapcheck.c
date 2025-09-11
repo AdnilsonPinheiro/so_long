@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mapcheck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:50:52 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/08/27 12:40:00 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:58:53 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/// @brief checks if the file passed as parameter to the program ends in .ber
 void	ft_isber(char *argv, t_map *map)
 {
 	int	pos;
@@ -26,7 +26,7 @@ void	ft_isber(char *argv, t_map *map)
 	if (ft_strncmp(&argv[pos], ".ber", 4) != 0)
 		ft_cleanmap("File format invalid\n", map, FILE_FORM);
 }
-
+/// @brief Checks if the map is composed solely of valid chars
 void	ft_validchar(t_map *map)
 {
 	int		i;
@@ -52,7 +52,7 @@ void	ft_validchar(t_map *map)
 	}
 	ft_nbcheck(map);
 }
-
+/// @brief checks if the map is rectangular, i.e. if all lines are the same length
 void	ft_isrect(t_map *map)
 {
 	size_t	len;
@@ -68,7 +68,8 @@ void	ft_isrect(t_map *map)
 	}
 	ft_checkwall(map, len - 1);
 }
-
+/// @brief Checks if the map is surrounded by walls (char '1')
+/// @param len the length of map's first line
 void	ft_checkwall(t_map *map, size_t len)
 {
 	int	i;
@@ -92,7 +93,7 @@ void	ft_checkwall(t_map *map, size_t len)
 			ft_cleanmap("Map must be surrounded by walls\n", map, RECT_ER);
 	}
 }
-
+/// @brief Checks for the correct amount of each component
 void	ft_nbcheck(t_map *map)
 {
 	if (map->nb_c < 1)

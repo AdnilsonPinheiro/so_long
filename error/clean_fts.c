@@ -6,12 +6,15 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:40:53 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:41:50 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/// @brief cleans t_map in case of error or end of program
+/// @param str to be printed in case of error
+/// @param map the struct
+/// @param mod marker to call EXIT_FAILURE
 void	ft_cleanmap(char *str, t_map *map, int mod)
 {
 	int	i;
@@ -37,7 +40,10 @@ void	ft_cleanmap(char *str, t_map *map, int mod)
 	if (mod != 0)
 		exit(EXIT_FAILURE);
 }
-
+/// @brief cleans t_game struct
+/// @param str to be printed in case of error
+/// @param game the struct
+/// @param mod marker to call EXIT_FAILURE
 void	ft_cleangame(char *str, t_game *game, int mod)
 {
 	if (str)
@@ -63,7 +69,7 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	if (mod != 0)
 		exit(EXIT_FAILURE);
 }
-
+/// @brief clean images inside t_game
 void	ft_clean_all_img(t_game *game)
 {
 	int	i;
@@ -85,7 +91,8 @@ void	ft_clean_all_img(t_game *game)
 		i++;
 	}
 }
-
+/// @brief clean individual an individual image
+/// @param img the specified t_img struct
 void	ft_cleanimg(t_game *game, t_img *img)
 {
 	if (!img)
@@ -97,7 +104,9 @@ void	ft_cleanimg(t_game *game, t_img *img)
 	}
 	free(img);
 }
-
+/// @brief cleans the char **matrix inside map
+/// @param matrix the char ** to be freed
+/// @param map the struct with map info
 void	ft_freematrix(char **matrix, t_map *map)
 {
 	int	i;

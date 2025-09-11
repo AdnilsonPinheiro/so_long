@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:20:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 15:04:47 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:55:04 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	main(int argc, char **argv)
 	ft_game(map);
 	ft_putstr_fd("Program closed gracefully =)\n", 1);
 }
-
+/// @brief summarizes all parsing functions
+/// @param argv the .ber file passed as parameter
+/// @param map the t_map struct that will hold all map info
 static void	ft_parse(char *argv, t_map *map)
 {
 	map->nb_c = 0;
@@ -46,7 +48,7 @@ static void	ft_parse(char *argv, t_map *map)
 	ft_isrect(map);
 	ft_findplayer(map);
 }
-
+/// @brief finds the size of the map to be allocated
 static void	ft_size(char *argv, t_map *map)
 {
 	char	*line;
@@ -69,7 +71,7 @@ static void	ft_size(char *argv, t_map *map)
 	close(map->fd);
 	map->fd = -1;
 }
-
+/// @brief creates a map inside the struct based on the .ber file
 static void	ft_makemap(char *argv, t_map *map)
 {
 	int		i;
@@ -95,7 +97,7 @@ static void	ft_makemap(char *argv, t_map *map)
 	close(map->fd);
 	map->fd = -1;
 }
-
+/// @brief finds the 'P' char
 static void	ft_findplayer(t_map *map)
 {
 	int	i;

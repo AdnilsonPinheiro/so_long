@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:29:31 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 20:18:32 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:46:30 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 static char	**ft_matrixdup(t_map *map);
 static void	ft_fill(char **matrix, int y, int x);
 static void	ft_checkfill(char **matrix, t_map *map);
-
+/// @brief fills the map to check playability
+/// @param map holds the char **matrix to be filled
+/// @param y vertical axis
+/// @param x horizontal axis
 void	ft_floodfill(t_map *map, int y, int x)
 {
 	char	**matrix;
@@ -29,7 +32,8 @@ void	ft_floodfill(t_map *map, int y, int x)
 	ft_checkexit(matrix, map);
 	ft_freematrix(matrix, NULL);
 }
-
+/// @brief duplicates to matrix so we don't dereferenciate the original map
+/// @return the duplicated matrix
 static char	**ft_matrixdup(t_map *map)
 {
 	char	**matrix;
@@ -53,7 +57,7 @@ static char	**ft_matrixdup(t_map *map)
 	matrix[i] = NULL;
 	return (matrix);
 }
-
+/// @brief iterates in every possible direction until it hits walls or the end
 static void	ft_fill(char **matrix, int y, int x)
 {
 	int		i;
@@ -71,7 +75,7 @@ static void	ft_fill(char **matrix, int y, int x)
 	ft_fill(matrix, y - 1, x);
 	ft_fill(matrix, y, x - 1);
 }
-
+/// @brief Checks if there are any collectables that were not dereferenciated by ft_fill
 static void	ft_checkfill(char **matrix, t_map *map)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:36:44 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/04 19:48:41 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:38:00 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ft_cleangame(char *str, t_game *game, int mod)
 	if (mod == INT_MAX)
 		exit(EXIT_SUCCESS);
 }
-/// @brief 
-/// @param game 
+/// @brief clean all t_img structs inside of game
+/// @param game main struct
 void	ft_clean_all_img(t_game *game)
 {
 	int	i;
@@ -94,7 +94,9 @@ void	ft_clean_all_img(t_game *game)
 	while (++i < COLLECT_COUNT)
 		ft_cleanimg(game, game->collect[i]);
 }
-
+/// @brief clean individual t_img images
+/// @param game main struct
+/// @param img image struct inside game
 void	ft_cleanimg(t_game *game, t_img *img)
 {
 	if (!img)
@@ -106,7 +108,9 @@ void	ft_cleanimg(t_game *game, t_img *img)
 	}
 	free(img);
 }
-
+/// @brief clear the allocated map in char **matrix
+/// @param matrix the allocated map
+/// @param map struct which contains all map information
 void	ft_freematrix(char **matrix, t_map *map)
 {
 	int	i;

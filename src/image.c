@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:12:21 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 14:30:42 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:53:05 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/// @brief initializes all images in t_game *game
 void	ft_initallimg(t_game *game)
 {
 	int	i;
@@ -40,7 +40,9 @@ void	ft_initallimg(t_game *game)
 	if (!game->wall)
 		ft_cleangame("Failed to allocate wall\n", game, GAME_ALLOC);
 }
-
+/// @brief initializes individual image
+/// @param path the path to the .xpm file
+/// @return initialized t_img struct
 t_img	*ft_imginit(t_game *game, char *path)
 {
 	t_img	*img;
@@ -63,7 +65,9 @@ t_img	*ft_imginit(t_game *game, char *path)
 			&img->endian);
 	return (img);
 }
-
+/// @brief puts titles to the window through mlx_put_image_to_window
+/// @param x horizontal axis (aka indexes in a string)
+/// @param y vertical axis (aka each string)
 void	ft_put_to_window(t_game *game, int x, int y)
 {
 	if (!game || !game->map || !game->map->matrix)
@@ -83,7 +87,9 @@ void	ft_put_to_window(t_game *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->win, game->player->img,
 			x * TITLE, y * TITLE);
 }
-
+/// @brief replaces images as needed
+/// @param img struct which holds the image
+/// @param path path to the new .xpm file
 void	ft_changeimg(t_game *game, t_img *img, char *path)
 {
 	if (!game || !img || !path)

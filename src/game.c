@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:11:05 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 17:07:37 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:49:59 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static t_game	*ft_gameinit(t_map *map);
 static int		ft_exitgame(t_game *game);
 static int		ft_keypress(int keysym, t_game *game);
 static int		render(t_game *game);
-
+/// @brief main game function
+/// @param map struct with all map info
 void	ft_game(t_map *map)
 {
 	t_game	*game;
@@ -28,7 +29,8 @@ void	ft_game(t_map *map)
 	mlx_loop(game->mlx);
 	ft_cleangame(NULL, game, 0);
 }
-
+/// @brief initializes the t_game struct
+/// @return the struct initialized
 static t_game	*ft_gameinit(t_map *map)
 {
 	t_game	*game;
@@ -49,7 +51,8 @@ static t_game	*ft_gameinit(t_map *map)
 	game->movecount = 0;
 	return (game);
 }
-
+/// @brief renders pixels to the window
+/// @return an int required by mlx_loop_hook
 static int	render(t_game *game)
 {
 	int	x;
@@ -72,7 +75,9 @@ static int	render(t_game *game)
 	}
 	return (0);
 }
-
+/// @brief reads all possible tty input
+/// @param keysym reads individual tty input
+/// @return int required by mlx_hook
 static int	ft_keypress(int keysym, t_game *game)
 {
 	if (game && keysym == XK_Escape)
@@ -87,7 +92,8 @@ static int	ft_keypress(int keysym, t_game *game)
 		ft_move_right(game);
 	return (0);
 }
-
+/// @brief ends game loop
+/// @return int required by mlx_hook
 static int	ft_exitgame(t_game *game)
 {
 	if (game && game->mlx)

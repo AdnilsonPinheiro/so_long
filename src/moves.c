@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:09:37 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 17:21:12 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:00:13 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/// @brief moves player upwards
 void	ft_move_up(t_game *game)
 {
 	int	new;
@@ -38,7 +38,7 @@ void	ft_move_up(t_game *game)
 	game->movecount++;
 	ft_printf("Moves made: %d\n", game->movecount);
 }
-
+/// @brief moves player downwards
 void	ft_move_down(t_game *game)
 {
 	int	new;
@@ -65,7 +65,7 @@ void	ft_move_down(t_game *game)
 	game->movecount++;
 	ft_printf("Moves made: %d\n", game->movecount);
 }
-
+/// @brief moves player leftwards
 void	ft_move_left(t_game *game)
 {
 	int	new;
@@ -93,7 +93,7 @@ void	ft_move_left(t_game *game)
 	ft_changeimg(game, game->player, "textures/cat_left.xpm");
 	ft_printf("Moves made: %d\n", game->movecount);
 }
-
+/// @brief moves player rightwards
 void	ft_move_right(t_game *game)
 {
 	int	new;

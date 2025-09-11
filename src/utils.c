@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpinhei <adpinhei@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: adpinhei <adpinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:44:33 by adpinhei          #+#    #+#             */
-/*   Updated: 2025/09/03 17:08:14 by adpinhei         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:03:36 by adpinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static unsigned int	g_seed;
-
+/// @brief Fills map in order to find if exit is reacheble
+/// @param matrix the map
+/// @param y vertical axis
+/// @param x horizontal axis
 void	ft_fillexit(char **matrix, int y, int x)
 {
 	int		i;
@@ -31,7 +34,7 @@ void	ft_fillexit(char **matrix, int y, int x)
 	ft_fillexit(matrix, y - 1, x);
 	ft_fillexit(matrix, y, x - 1);
 }
-
+/// @brief check if exit was reached from player's starting position
 void	ft_checkexit(char **matrix, t_map *map)
 {
 	int	i;
@@ -51,13 +54,13 @@ void	ft_checkexit(char **matrix, t_map *map)
 		}
 	}
 }
-
+/// @brief creates a pseudo-random number to assign the sushi
 int	lcg_rand(void)
 {
 	g_seed = (1103515245 * g_seed + 12345) & 0x7fffffff;
 	return (g_seed);
 }
-
+/// @brief assigns a different sushi image based on lcg_rand and the collectable's coordinates
 void	ft_rand_collect(t_game *game, int x, int y)
 {
 	int	rand_index;
