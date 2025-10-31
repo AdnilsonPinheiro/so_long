@@ -4,17 +4,12 @@ A small 2D grid-based game where the player must collect all collectibles and re
 
 Badges
 - Language: ![C](https://img.shields.io/badge/language-C-orange)
-- Status: ![Status](https://img.shields.io/badge/status-development-yellow)
+- Status: ![Status](https://img.shields.io/badge/status-completed-brightgreen)
 
 ## Demo
 
 <p align="center">
-  <video autoplay loop muted playsinline width="640" controls>
-    <!-- Use the raw.githubusercontent.com URL so the video file bytes are served directly -->
-    <source src="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.mp4" type="video/mp4" />
-    <source src="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.webm" type="video/webm" />
-    Your browser does not support the video tag. Download the demo <a href="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.mp4">here</a>.
-  </video>
+  <img src="./assets/so_long_demo.gif" alt="so_long demo" width="640" />
 </p>
 
 ## Table of contents
