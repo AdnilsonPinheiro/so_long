@@ -10,9 +10,10 @@ Badges
 
 <p align="center">
   <video autoplay loop muted playsinline width="640" controls>
-    <source src="./so_long_demo.mp4" type="video/mp4" />
-    <source src="./so_long_demo.webm" type="video/webm" />
-    Your browser does not support the video tag. Download the demo <a href="./so_long_demo.mp4">here</a>.
+    <!-- Use the raw.githubusercontent.com URL so the video file bytes are served directly -->
+    <source src="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.mp4" type="video/mp4" />
+    <source src="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.webm" type="video/webm" />
+    Your browser does not support the video tag. Download the demo <a href="https://raw.githubusercontent.com/AdnilsonPinheiro/so_long/main/so_long_demo.mp4">here</a>.
   </video>
 </p>
 
