@@ -12,11 +12,11 @@ Badges
   <video autoplay loop muted playsinline width="640" controls>
     <source src="./so_long_demo.mp4" type="video/mp4" />
     <source src="./so_long_demo.webm" type="video/webm" />
-    Your browser does not support the video tag. Download the demo <a href="./assets/demo.mp4">here</a>.
+    Your browser does not support the video tag. Download the demo <a href="./so_long_demo.mp4">here</a>.
   </video>
 </p>
 
-Table of contents
+## Table of contents
 - [About](#about)
 - [Features](#features)
 - [Requirements](#requirements)
