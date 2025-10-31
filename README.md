@@ -8,7 +8,8 @@ Badges
 
 ## Demo
 
-![so_long demo](assets/so_long_demo.gif)
+![so_long demo](./assets/so_long_gif.gif)
+
 
 
 ## Table of contents
