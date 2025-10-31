@@ -8,9 +8,8 @@ Badges
 
 ## Demo
 
-<p align="center">
-  <img src="./assets/so_long_demo.gif" alt="so_long demo" width="640" />
-</p>
+![so_long demo](assets/so_long_demo.gif)
+
 
 ## Table of contents
 - [About](#about)
